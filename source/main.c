@@ -1,10 +1,9 @@
+#include "vk_net.h"
+
 #include <stdio.h>
 
-int main()
+int main(int argc, const char * argv[])
 {
-#ifdef _OS_Linux_
-    printf("build config var.\n");
-#endif
-    printf("hello world!\n");
+    printf("test...!\n");    
     return 0;
 }

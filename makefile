@@ -1,21 +1,31 @@
-CC=gcc -m64 -D _OS_Linux_
+CC=g++ -m64 -D _OS_Linux_
+CFLAGS = 
 SDIR = source
 ODIR = build
-LIBDIR = .
-BFile = ./bin/vking.bin
+BFile = bin/vking.bin
 
-_EXOBJS = 
-EXOBJS = $(patsubst %,$(LIBDIR)/%,$(_EXOBJS))
+_INCDIRS = source
+INCDIRS = $(patsubst %,-I %,$(_INCDIRS))
 
-_OBJS = main.o
-OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
+_DYNAMIC_OBJDIRS = 
+DYNAMIC_OBJDIRS = $(patsubst %,-ld %,$(_DYNAMIC_OBJDIRS))
 
-$(ODIR)/%.o: $(SDIR)/%.c 
-	$(CC) -c $(INC) -o $@ $< $(CFLAGS) 
-	
+_STATIC_LIBDIRS = 
+STATIC_LIBDIRS = $(patsubst %,-l %,$(_STATIC_LIBDIRS))
+
+EXOBJS = 
+
+_OBJS = $(wildcard $(SDIR)/*.c)
+_OBJS1 = $(notdir $(_OBJS))
+_OBJS2 = $(patsubst %.c,%.o,$(_OBJS1))
+OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS2))
+
+$(ODIR)/%.o: $(SDIR)/%.c
+	@$(CC) $(INCDIRS) -c -o $@ $< $(CFLAGS) 
+
 #------------------------------------
 build : $(OBJS)
-	@$(CC) -o $(BFile) $(OBJS) $(EXOBJS)
+	@$(CC) $(STATIC_LIBDIRS) $(DYNAMIC_OBJDIRS) -o $(BFile) $(OBJS) $(EXOBJS)
 
 test :
 	@$(BFile)
