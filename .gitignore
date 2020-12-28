@@ -1,1 +1,6 @@
-/makefile.old
+.DS_Store
+*.a
+*.o
+*.bin
+/build
+/bin

@@ -2,7 +2,7 @@ CC=gcc -m64 -D _OS_Linux_
 SDIR = source
 ODIR = build
 LIBDIR = .
-BFile = ./bin/output
+BFile = ./bin/vking.bin
 
 _EXOBJS = 
 EXOBJS = $(patsubst %,$(LIBDIR)/%,$(_EXOBJS))
