@@ -1,6 +1,4 @@
 
-#include "vk_net.h"
-
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/sysinfo.h>
@@ -11,6 +9,8 @@
 #include <netinet/tcp.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+#include "vk_net.h"
 
 static const XXXX vknet_params = {
     .bvar = true,
